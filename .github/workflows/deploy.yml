@@ -5,6 +5,9 @@ on:
     branches:
       - master
 jobs:
+  secrets-scan:
+    name: Escaneo de secretos
+    uses: trufflesecurity/trufflehog@v3.44.0
   deploy-heroku:
     name: Deploy Heroku
     runs-on: ubuntu-latest
