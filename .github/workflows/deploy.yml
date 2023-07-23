@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Run Gitleaks
-        uses: gitleaks/gitleaks-action@v2.3.2
+        uses: gitleaks/gitleaks-action@v2.3.2 
   
   trufflehog:
     name: TruffleHog
@@ -28,6 +28,7 @@ jobs:
           base: ${{ github.event.repository.default_branch }}
           head: HEAD
           extra_args: --debug --no-verification --json
+          
 #  deploy-heroku:
 #    name: Deploy Heroku
 #    runs-on: ubuntu-latest
@@ -40,3 +41,10 @@ jobs:
 #          heroku_email: ${{secrets.EMAIL_ADDRESS}}
 #          branch: "master"
 #          usedocker: true
+
+  trivy:
+      name: Aqua Security Trivy
+      runs-on: ubuntu-latest
+      steps:
+        - name: Ejecución de Trivy
+          uses: aquasecurity/trivy-action@0.11.2
