@@ -46,11 +46,13 @@ jobs:
       name: Aqua Security Trivy
       runs-on: ubuntu-latest
       steps:
-        - name: Ejecución de Trivy
-          uses: aquasecurity/trivy-action@0.11.2
+        - name: Build an image from Dockerfile
+          run: |
+            docker build -t trivy-image:${{ github.sha }} .
+  #security github
+        - name: Run Trivy vulnerability scanner
+          uses: aquasecurity/trivy-action@master
           with:
-            image-ref: 'registry.heroku.com/nicolas-villa-c3/web:latest'
-            exit-code: '1'
-            ignore-unfixed: true
-            vuln-type: 'os,library'
-            severity: 'CRITICAL,HIGH'
+            image-ref: 'trivy-image:${{ github.sha }}'
+            format: 'sarif'
+            output: 'trivy-results.sarif'
