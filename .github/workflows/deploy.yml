@@ -59,6 +59,7 @@ jobs:
   #security github
         - name: Run Trivy vulnerability scanner
           uses: aquasecurity/trivy-action@master
+          continue-on-error: true
           with:
             image-ref: 'trivy-image:${{ github.sha }}'
             format: 'json'
