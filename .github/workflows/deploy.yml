@@ -1,22 +1,5 @@
 name: Deploy Vulnerable Application                                  # workflow name
-#
-#on:
-#  push:
-#    branches:
-#      - master
-#jobs:
-#  deploy-heroku:
-#    name: Deploy Heroku
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-#        with:
-#          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-#          heroku_app_name: "nicolas-villa-c3" #Must be unique in Heroku
-#          heroku_email: "nicolasevilla93@gmail.com"
-#          remote_branch: "main"
-#          usedocker: true
+
 on:
   push:
     branches:
@@ -27,22 +10,39 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Login to Heroku
-        run: |
-          echo ${{secrets.HEROKU_API_KEY}} | docker login --username=_ --password-stdin registry.heroku.com
-          heroku container:login
-
-      - name: Create Heroku App
-        run: |
-          heroku create MIAPP
-          heroku git:remote -a MIAPP
-
-      - name: Build and Push Docker Image
-        run: |
-          heroku container:push web
-          heroku container:release web
-
-      - name: Open Heroku App
-        run: |
-          heroku open
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "nicolas-villa-c3" #Must be unique in Heroku
+          heroku_email: "nicolasevilla93@gmail.com"
+          branch: "master"
+          usedocker: true
+#on:
+#  push:
+#    branches:
+#      - master
+#jobs:
+#  deploy-heroku:
+#    name: Deploy Heroku
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Login to Heroku
+#        run: |
+#          echo ${{secrets.HEROKU_API_KEY}} | docker login --username=_ --password-stdin registry.heroku.com
+#          heroku container:login
+#
+#      - name: Create Heroku App
+#        run: |
+#          heroku create MIAPP
+#          heroku git:remote -a MIAPP
+#
+#      - name: Build and Push Docker Image
+#        run: |
+#          heroku container:push web
+#          heroku container:release web
+#
+#      - name: Open Heroku App
+#        run: |
+#          heroku open
