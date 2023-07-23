@@ -62,7 +62,7 @@ jobs:
           continue-on-error: true
           with:
             image-ref: 'trivy-image:${{ github.sha }}'
-            format: 'json'
+            format: 'table'
             output: 'trivy-results.json'
             severity: 'CRITICAL,HIGH,MEDIUM,LOW'
             exit-code: '1'
