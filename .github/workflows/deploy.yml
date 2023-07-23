@@ -49,7 +49,7 @@ jobs:
         - name: Ejecución de Trivy
           uses: aquasecurity/trivy-action@0.11.2
           with:
-            image-ref: 'registry.heroku.com/web/nicolas-villa-c3/vulnerable-web-app:latest'
+            image-ref: 'registry.heroku.com/nicolas-villa-c3/web:latest'
             exit-code: '1'
             ignore-unfixed: true
             vuln-type: 'os,library'
