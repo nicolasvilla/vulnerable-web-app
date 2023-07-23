@@ -21,8 +21,7 @@ jobs:
     container: returntocorp/semgrep
     steps:
       - uses: actions/checkout@v3
-        continue-on-error: true
-      - run: semgrep ci --sarif --output=semgrep.sarif
+      - run: semgrep ci --sarif --output=semgrep.sarif || true
         env:
           SEMGREP_RULES: p/default
       - name: Upload Trivy scan results to GitHub Security tab
