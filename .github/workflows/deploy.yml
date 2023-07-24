@@ -19,10 +19,10 @@ jobs:
     name: SAST Semgrep
     runs-on: ubuntu-latest
     permissions:
-        # required for all workflows
-        security-events: write
-        actions: read
-        contents: read
+      # required for all workflows
+      security-events: write
+      actions: read
+      contents: read
     container: returntocorp/semgrep
     steps:
       - uses: actions/checkout@v3
