@@ -18,13 +18,18 @@ jobs:
   semgrep-sast:
     name: SAST Semgrep
     runs-on: ubuntu-latest
+    permissions:
+        # required for all workflows
+        security-events: write
+        actions: read
+        contents: read
     container: returntocorp/semgrep
     steps:
       - uses: actions/checkout@v3
       - run: semgrep ci --sarif --output=semgrep.sarif || true
         env:
           SEMGREP_RULES: p/default
-      - name: Upload Trivy scan results to GitHub Security tab
+      - name: Upload Semgrep scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'semgrep.sarif'
