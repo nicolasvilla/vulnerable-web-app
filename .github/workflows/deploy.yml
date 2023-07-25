@@ -74,23 +74,23 @@ jobs:
           with:
             sarif_file: 'trivy-results.sarif'
 
-  deploy-heroku:
-    name: Deploy Heroku
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "nicolas-villa-c3" #Must be unique in Heroku
-          heroku_email: ${{secrets.EMAIL_ADDRESS}}
-          branch: "master"
-          usedocker: true
+#  deploy-heroku:
+#    name: Deploy Heroku
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+#        with:
+#          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#          heroku_app_name: "nicolas-villa-c3" #Must be unique in Heroku
+#          heroku_email: ${{secrets.EMAIL_ADDRESS}}
+#          branch: "master"
+#          usedocker: true
   
   zap_scan:
       runs-on: ubuntu-latest
       #needs: security
-      needs: deploy-heroku
+#      needs: deploy-heroku
       name: Run DAST scan on the web application
       steps:
         - name: Checkout
@@ -105,6 +105,7 @@ jobs:
             rules_file_name: '.zap/rules.tsv'
             cmd_options: '-a'
             artifact_name: 'zap-dast'
+            allow_issue_writing: false
         - name: ZAP Report
           uses: actions/upload-artifact@v3
           with:
