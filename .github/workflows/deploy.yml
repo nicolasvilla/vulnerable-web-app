@@ -101,7 +101,7 @@ jobs:
           uses: zaproxy/action-baseline@v0.8.2
           with:
             docker_name: 'owasp/zap2docker-stable'
-            target: 'http://testphp.vulnweb.com/'
+            target: 'https://nicolas-villa-c3-050568a520e9.herokuapp.com'
             rules_file_name: '.zap/rules.tsv'
             cmd_options: '-a'
             artifact_name: 'zap-dast'
