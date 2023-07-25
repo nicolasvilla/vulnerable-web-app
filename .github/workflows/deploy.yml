@@ -98,7 +98,7 @@ jobs:
           with:
             ref: master
         - name: ZAP Scan
-          uses: zaproxy/action-baseline@v0.8.2
+          uses: zaproxy/action-full-scan@v0.5.1
           with:
             docker_name: 'owasp/zap2docker-stable'
             target: 'https://nicolas-villa-c3-050568a520e9.herokuapp.com'
