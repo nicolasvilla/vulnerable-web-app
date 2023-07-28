@@ -119,7 +119,7 @@ jobs:
             target: ${{secrets.APP_URL}}
             rules_file_name: '.zap/rules.tsv'
             cmd_options: '-a -x zap-dast.xml'
-            artifact_name: 'zap-dast.xml'
+ #           artifact_name: 'zap-dast.xml'
             allow_issue_writing: false
         - name: ZAP Report
           uses: actions/upload-artifact@v3
