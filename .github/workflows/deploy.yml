@@ -118,8 +118,8 @@ jobs:
             docker_name: 'owasp/zap2docker-stable'
             target: ${{secrets.APP_URL}}
             rules_file_name: '.zap/rules.tsv'
-            cmd_options: '-x zap-dast'
-            artifact_name: 'zap-dast'
+            cmd_options: '-a'
+            #artifact_name: 'zap-dast'
             allow_issue_writing: false
         - name: ZAP Report
           uses: actions/upload-artifact@v3
