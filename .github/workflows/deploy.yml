@@ -111,7 +111,7 @@ jobs:
           uses: zaproxy/action-full-scan@v0.5.1
           with:
             docker_name: 'owasp/zap2docker-stable'
-            target: 'https://nicolas-villa-c3-050568a520e9.herokuapp.com'
+            target: ${{secrets.APP_URL}}
             rules_file_name: '.zap/rules.tsv'
             cmd_options: '-a'
             artifact_name: 'zap-dast'
