@@ -54,7 +54,7 @@ jobs:
         uses: actions/checkout@v3
       - run: wget -q https://github.com/jeremylong/DependencyCheck/releases/download/v8.3.1/dependency-check-8.3.1-release.zip
       - run: unzip -q dependency-check-8.3.1-release.zip
-      - run: ./dependency-check/bin/dependency-check.sh -v
+      - run: ./dependency-check/bin/dependency-check.sh --scan /home/runner/work/vulnerable-web-app/vulnerable-web-app
 
   trivy:
       name: Aqua Security Trivy
