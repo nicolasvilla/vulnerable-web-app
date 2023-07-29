@@ -51,8 +51,10 @@ jobs:
       contents: read
     container: owasp/dependency-check
     steps:
-      - uses: actions/checkout@v3
-      - run: --scan /home/runner/work/vulnerable-web-app/vulnerable-web-app
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Ejecutar SCA
+        run: --scan /home/runner/work/vulnerable-web-app/vulnerable-web-app
     
   trivy:
       name: Aqua Security Trivy
